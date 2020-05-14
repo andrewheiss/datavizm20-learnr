@@ -1,0 +1,41 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Manipulating data with dplyr")
+```
+
+```{r filter1, exercise=TRUE, eval=FALSE}
+# Show first few rows
+head(gapminder)
+
+# The data for Canada
+filter(gapminder, ___)
+
+# All data for countries in Oceania
+gapminder
+
+# Rows where life expectancy is greater than 82
+gapminder
+```
+
+```{r filter1-solution}
+# The data for Canada
+filter(gapminder, country == "Canada")
+
+# All data for countries in Oceania
+filter(gapminder, continent == "Oceania")
+
+# Rows where life expectancy is greater than 82
+filter(gapminder, lifeExp > 82)
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,41 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library(ggplot2)
+library(gapminder)
+
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Example lesson tutorial")
+```
+
+
+```{r 00-example, exercise=TRUE}
+gapminder_filtered <- gapminder %>% 
+  filter(year == 2007)
+
+ggplot(data = gapminder_filtered,
+       mapping = aes(x = gdpPercap, y = lifeExp, 
+                     size = pop, color = continent)) +
+  geom_point() + 
+  scale_x_log10(labels = scales::dollar_format(accuracy = 1)) +
+  scale_size_continuous(labels = scales::comma) +
+  scale_color_viridis_d(option = "plasma") +
+  labs(x = "GDP per capita", y = "Life expectancy",
+       title = "Health and wealth are strongly related",
+       subtitle = "142 countries; 2007 only", caption = "Source: The Gapminder Project",
+       color = "Continent", size = "Population") +
+  theme_bw()
+```
+
+<div id="00-example-hint">
+**Hint:** You'll want to change something in the code that creates `gapminder_filtered`. The text in the subtitle won't change automatically, so you'll want to edit that too.
+</div>
+
+<div data-iframe-height></div>

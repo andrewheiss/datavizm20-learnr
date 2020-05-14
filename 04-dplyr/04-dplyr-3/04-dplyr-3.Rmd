@@ -1,0 +1,46 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Manipulating data with dplyr")
+```
+
+```{r mutate1, exercise=TRUE, eval=FALSE}
+# Show first few rows
+head(gapminder)
+
+# Add an africa column that is TRUE if the country is on the African continent
+mutate(gapminder, _____)
+
+# Add a column for logged GDP per capita
+gapminder
+
+# Add an africa_asia column that says “Africa or Asia” if the country is in
+# Africa or Asia, and “Not Africa or Asia” if it’s not
+gapminder
+```
+
+```{r mutate1-solution}
+# Add an africa column that is TRUE if the country is on the African continent
+mutate(gapminder, africa = continent == "Africa")
+
+# Add a column for logged GDP per capita
+mutate(gapminder, log_gdpPercap = log(gdpPercap))
+
+# Add an africa_asia column that says “Africa or Asia” if the country is in
+# Africa or Asia, and “Not Africa or Asia” if it’s not
+mutate(gapminder, 
+       africa_asia = 
+         ifelse(continent %in% c("Africa", "Asia"), "Africa or Asia", "Not Africa or Asia"))
+
+```
+
+<div data-iframe-height></div>

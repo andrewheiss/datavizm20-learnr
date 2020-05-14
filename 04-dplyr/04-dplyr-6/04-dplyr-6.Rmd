@@ -1,0 +1,34 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Manipulating data with dplyr")
+```
+
+```{r groupby1, exercise=TRUE, eval=FALSE}
+# Show first few rows
+head(gapminder)
+
+# Find the minimum, maximum, and median life expectancy for each continent
+gapminder %>% 
+  group_by(____) %>% 
+  summarize(____)
+```
+
+```{r groupby1-solution}
+gapminder %>% 
+  group_by(continent) %>% 
+  summarize(min_le = min(lifeExp),
+            max_le = max(lifeExp),
+            med_le = median(lifeExp))
+```
+
+<div data-iframe-height></div>

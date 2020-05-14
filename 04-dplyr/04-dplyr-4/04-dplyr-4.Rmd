@@ -1,0 +1,37 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Manipulating data with dplyr")
+```
+
+```{r summarize1, exercise=TRUE, eval=FALSE}
+# Show first few rows
+head(gapminder)
+
+# The first (minimum) year in the gapminder dataset
+# The last (maximum) year in the dataset
+# The number of rows in the dataset 
+# The number of distinct countries in the dataset
+
+gapminder %>% 
+  summarize(___)
+```
+
+```{r summarize1-solution}
+gapminder %>% 
+  summarize(first = min(year),
+            last = max(year),
+            num_rows = n(),
+            num_unique = n_distinct(country))
+```
+
+<div data-iframe-height></div>

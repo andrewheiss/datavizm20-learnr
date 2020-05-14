@@ -1,0 +1,34 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Manipulating data with dplyr")
+```
+
+```{r summarize2, exercise=TRUE, eval=FALSE}
+# Show first few rows
+head(gapminder)
+
+# Use filter() and summarize() to calculate the median life expectancy on the
+# African continent in 2007
+
+gapminder %>% 
+  summarize(___)
+```
+
+```{r summarize2-solution}
+gapminder %>%
+  filter(continent == "Africa", year == 2007) %>%
+  summarize(n_countries = n_distinct(country), 
+            med_le = median(lifeExp))
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,29 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Theme editing")
+```
+
+```{r theme6, exercise=TRUE}
+ggplot(data = mpg,
+       mapping = aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 3) +
+  labs(title = "Engine displacement and highway MPG",
+       subtitle = "Heavier cars get worse mileage") +
+  theme_minimal()
+```
+
+```{r theme6-solution}
+theme(plot.background = element_rect(fill = "#F2D8CE"),
+      panel.background = element_rect(fill = "#608BA6", color = "#184759", size = 5))
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,41 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gapminder)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Manipulating data with dplyr")
+```
+
+```{r filter2, exercise=TRUE, eval=FALSE}
+# Show first few rows
+head(gapminder)
+
+# Canada before 1970
+filter(gapminder, ___)
+
+# Countries where life expectancy in 2007 is below 50
+gapminder
+
+# Countries where life expectancy in 2007 is below 50 and are not in Africa
+gapminder
+```
+
+```{r filter2-solution}
+# Canada before 1970
+filter(gapminder, country == "Canada", year < 1970)
+
+# Countries where life expectancy in 2007 is below 50
+filter(gapminder, year == 2007, lifeExp < 50)
+
+# Countries where life expectancy in 2007 is below 50 and are not in Africa
+filter(gapminder, year == 2007, lifeExp < 50, continent != "Africa")
+```
+
+<div data-iframe-height></div>
