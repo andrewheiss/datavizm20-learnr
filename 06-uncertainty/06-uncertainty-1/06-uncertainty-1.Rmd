@@ -1,0 +1,26 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Uncertainty")
+```
+
+```{r uncertainty1, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(x = cty)) +
+  geom_histogram()
+```
+
+```{r uncertainty1-solution}
+ggplot(data = mpg, mapping = aes(x = cty)) +
+  # 2 is just one binwidth that works. It's not the only right answer.
+  geom_histogram(binwidth = 2)
+```
+
+<div data-iframe-height></div>

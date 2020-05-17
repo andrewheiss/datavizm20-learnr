@@ -1,0 +1,25 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Uncertainty")
+```
+
+```{r uncertainty8, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(y = cty)) +
+  geom_boxplot()
+```
+
+```{r uncertainty8-solution}
+ggplot(data = mpg, mapping = aes(y = cty)) +
+  geom_boxplot(fill = "#E6AD3C", color = "#5ABD51", coef = 5)
+```
+
+<div data-iframe-height></div>

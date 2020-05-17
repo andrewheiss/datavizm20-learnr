@@ -1,0 +1,30 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(ggridges)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Uncertainty")
+```
+
+```{r uncertainty7, exercise=TRUE}
+library(ggridges)
+
+ggplot(data = mpg, mapping = aes(x = cty, fill = drv)) +
+  geom_density()
+```
+
+```{r uncertainty7-solution}
+library(ggridges)
+
+ggplot(data = mpg, mapping = aes(x = cty, fill = drv, y = drv)) +
+  geom_density_ridges()
+```
+
+<div data-iframe-height></div>

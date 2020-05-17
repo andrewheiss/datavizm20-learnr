@@ -1,0 +1,27 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(learnr)
+set.seed(1234)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Uncertainty")
+```
+
+```{r uncertainty1, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(y = cty, x = drv, fill = drv)) +
+  geom_boxplot()
+```
+
+```{r uncertainty1-solution}
+ggplot(data = mpg, mapping = aes(y = cty, x = drv, fill = drv)) +
+  geom_violin() +
+  geom_point(position = position_jitter(width = 0.1), size = 0.5)
+```
+
+<div data-iframe-height></div>

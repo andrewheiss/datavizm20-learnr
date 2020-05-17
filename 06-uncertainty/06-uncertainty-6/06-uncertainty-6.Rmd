@@ -1,0 +1,25 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Uncertainty")
+```
+
+```{r uncertainty6, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(x = cty)) +
+  geom_density()
+```
+
+```{r uncertainty6-solution}
+ggplot(data = mpg, mapping = aes(x = cty, fill = drv)) +
+  geom_density(alpha = 0.5)
+```
+
+<div data-iframe-height></div>
