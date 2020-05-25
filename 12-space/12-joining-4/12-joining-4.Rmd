@@ -1,0 +1,53 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Joining data")
+
+national_data <- tribble(
+  ~state, ~year, ~unemployment, ~inflation, ~population,
+  "GA",   2018,  5,             2,          100,
+  "GA",   2019,  5.3,           1.8,        200,
+  "GA",   2020,  5.2,           2.5,        300,
+  "NC",   2018,  6.1,           1.8,        350,
+  "NC",   2019,  5.9,           1.6,        375,
+  "NC",   2020,  5.3,           1.8,        400,
+  "CO",   2018,  4.7,           2.7,        200,
+  "CO",   2019,  4.4,           2.6,        300,
+  "CO",   2020,  5.1,           2.5,        400
+)
+
+national_libraries <- tribble(
+  ~state, ~year, ~libraries, ~schools,
+  "CO",   2018,  230,        470,
+  "CO",   2019,  240,        440,
+  "CO",   2020,  270,        510,
+  "NC",   2018,  200,        610,
+  "NC",   2019,  210,        590,
+  "NC",   2020,  220,        530,
+)
+```
+
+```{r joining4, exercise=TRUE}
+
+```
+
+```{r joining4-solution}
+national_data_combined <- left_join(national_data, national_libraries, 
+                                    by = c("state", "year"))
+national_data_combined
+
+# Piping with %>% also works
+national_data_combined <- national_data %>% 
+  left_join(national_libraries, by = c("state", "year"))
+national_data_combined
+```
+
+<div data-iframe-height></div>

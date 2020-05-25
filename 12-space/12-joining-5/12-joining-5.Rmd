@@ -1,0 +1,58 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Joining data")
+
+national_data <- tribble(
+  ~state, ~year, ~unemployment, ~inflation, ~population,
+  "GA",   2018,  5,             2,          100,
+  "GA",   2019,  5.3,           1.8,        200,
+  "GA",   2020,  5.2,           2.5,        300,
+  "NC",   2018,  6.1,           1.8,        350,
+  "NC",   2019,  5.9,           1.6,        375,
+  "NC",   2020,  5.3,           1.8,        400,
+  "CO",   2018,  4.7,           2.7,        200,
+  "CO",   2019,  4.4,           2.6,        300,
+  "CO",   2020,  5.1,           2.5,        400
+)
+
+national_libraries <- tribble(
+  ~state, ~year, ~libraries, ~schools,
+  "CO",   2018,  230,        470,
+  "CO",   2019,  240,        440,
+  "CO",   2020,  270,        510,
+  "NC",   2018,  200,        610,
+  "NC",   2019,  210,        590,
+  "NC",   2020,  220,        530,
+)
+
+national_data_2019 <- national_data %>% 
+  filter(year == 2019) %>% select(-year)
+
+national_libraries_2019 <- national_libraries %>% 
+  filter(year == 2019) %>% select(-year)
+```
+
+```{r joining5, exercise=TRUE}
+
+```
+
+```{r joining5-solution}
+combined_data <- left_join(national_data_2019, national_libraries_2019, by = "state")
+combined_data
+
+# Piping with %>% also works
+combined_data <- national_data_2019 %>% 
+  left_join(national_libraries_2019, by = "state")
+combined_data
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,44 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Joining data")
+
+national_data <- tribble(
+  ~state, ~year, ~unemployment, ~inflation, ~population,
+  "GA",   2018,  5,             2,          100,
+  "GA",   2019,  5.3,           1.8,        200,
+  "GA",   2020,  5.2,           2.5,        300,
+  "NC",   2018,  6.1,           1.8,        350,
+  "NC",   2019,  5.9,           1.6,        375,
+  "NC",   2020,  5.3,           1.8,        400,
+  "CO",   2018,  4.7,           2.7,        200,
+  "CO",   2019,  4.4,           2.6,        300,
+  "CO",   2020,  5.1,           2.5,        400
+)
+
+puerto_rico_data <- tribble(
+  ~state, ~unemployment, ~population, ~year,
+  "PR",   3.1,            150,        2018, 
+  "PR",   3.2,            250,        2019, 
+  "PR",   3.3,            350,        2020
+)
+```
+
+```{r joining1, exercise=TRUE}
+
+```
+
+```{r joining1-solution}
+us_data <- bind_rows(national_data, puerto_rico_data)
+us_data
+```
+
+<div data-iframe-height></div>

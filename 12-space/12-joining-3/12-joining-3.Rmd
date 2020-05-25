@@ -1,0 +1,55 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Joining data")
+
+national_data <- tribble(
+  ~state, ~year, ~unemployment, ~inflation, ~population,
+  "GA",   2018,  5,             2,          100,
+  "GA",   2019,  5.3,           1.8,        200,
+  "GA",   2020,  5.2,           2.5,        300,
+  "NC",   2018,  6.1,           1.8,        350,
+  "NC",   2019,  5.9,           1.6,        375,
+  "NC",   2020,  5.3,           1.8,        400,
+  "CO",   2018,  4.7,           2.7,        200,
+  "CO",   2019,  4.4,           2.6,        300,
+  "CO",   2020,  5.1,           2.5,        400
+)
+
+national_data_2019 <- national_data %>% 
+  filter(year == 2019) %>% select(-year)
+
+state_regions <- tribble(
+  ~region, ~state,
+  "Northeast", c("CT", "ME", "MA", "NH", "RI", "VT", "NJ", "NY", "PA"),
+  "Midwest", c("IL", "IN", "MI", "OH", "WI", "IA", "KS", "MN", "MO", "NE", "ND", "SD"),
+  "South", c("DE", "FL", "GA", "MD", "NC", "SC", "VA", "DC", "WV", "AL", "KY", "MS", "TN", "AR", "LA", "OK", "TX"),
+  "West", c("AZ", "CO", "ID", "MT", "NV", "NM", "UT", "WY", "AK", "CA", "HI", "OR", "WA")
+) %>% unnest(state) %>% 
+  arrange(state)
+```
+
+```{r joining3, exercise=TRUE}
+
+```
+
+```{r joining3-solution}
+national_data_with_region <- left_join(national_data_2019, state_regions, by = "state")
+national_data_with_region
+
+# Piping with %>% also works
+national_data_with_region <- national_data_2019 %>% 
+  left_join(state_regions, by = "state")
+national_data_with_region
+```
+
+<div data-iframe-height></div>
